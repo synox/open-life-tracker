@@ -2,7 +2,7 @@
 'use strict';
 
 
-openLifeTracker.controller('chartCtrl', function ($scope,$filter,offlineStorage, $rootScope,$timeout) {
+openLifeTracker.controller('chartCtrl', function ($scope,$filter,offlineStorage, $rootScope) {
 	var entries = offlineStorage.get();
   $scope.graphData = [];
   
