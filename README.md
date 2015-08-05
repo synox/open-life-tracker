@@ -18,7 +18,7 @@ Try the [Demo Application](https://synox.github.io/open-life-tracker/app/)
 3. Access with your desktop or mobile browser. 
 
 ## Status
-This software is still under development. Be safe and make export your entries every few weeks or month. 
+This software is still under development. Be safe and export your entries every few weeks or month. 
 
 ## Build and test
 If you make changes, that's how you build it. `npm` installation required.
