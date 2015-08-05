@@ -11,6 +11,7 @@ Track any personal or professional data in the browser. Track your health, the f
     Lasagne for lunch #food #calories:560 #carbohydrates:250g
 ![Demo Chart](doc-chart.png)
 
+Try the [Demo Application](https://synox.github.io/open-life-tracker/app/)
 ## Installation
 1. Copy the app directory to your webspace. 
 2. Make sure the file offline.appcache is served with mime-type `text/cache-manifest`. There is a `.htaccess` file for apache.
