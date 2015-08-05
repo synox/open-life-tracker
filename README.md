@@ -33,6 +33,7 @@ If you make changes, that's how you build it. `npm` installation required.
 
 To do: 
 - more unit tests
+- test with large number of entries
 
 ## Used JS libraries
 Base:
