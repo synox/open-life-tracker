@@ -13,15 +13,15 @@ Track any personal or professional data in the browser. Track your health, the f
 
 Try the [Demo Application](https://synox.github.io/open-life-tracker/app/)
 ## Installation
-1. Copy the app directory to your webspace. 
+1. Copy the `app` directory to your webspace. 
 2. Make sure the file offline.appcache is served with mime-type `text/cache-manifest`. There is a `.htaccess` file for apache.
-3. Access with your desktop or mobile browser. 
+3. Access with a modern mobile or desktop browser. 
 
 ## Status
 This software is still under development. Be safe and export your entries every few weeks or month. 
 
 ## Build and test
-If you make changes, that's how you build it. `npm` installation required.
+If you make changes, that's how you build it. [npm](https://nodejs.org/download/) installation required.
 
     npm install
     npm test
