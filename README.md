@@ -43,11 +43,9 @@ Base:
  * http://angularjs.org/
  * http://getbootstrap.com/
  * http://jquery.com/
- * https://github.com/sachinchoolur/angular-flash
  
 Data handling:
  * https://github.com/lodash/lodash
- * https://github.com/stranger82/angular-utf8-base64 
 
 Charts:
  * https://github.com/n3-charts/line-chart

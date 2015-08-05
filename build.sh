@@ -6,15 +6,12 @@ bower install
 FILES_JS="bower_components/jquery/dist/jquery.min.js  
 bower_components/bootstrap/dist/js/bootstrap.min.js 
 bower_components/angular/angular.min.js 
-bower_components/angular-flash-alert/dist/angular-flash.min.js 
 bower_components/angular-i18n/angular-locale_de-ch.js 
 bower_components/lodash/lodash.min.js  
 bower_components/d3/d3.min.js 
-bower_components/n3-line-chart/build/line-chart.min.js 
-bower_components/angular-utf8-base64/angular-utf8-base64.min.js"
+bower_components/n3-line-chart/build/line-chart.min.js"
 
-export FILES_CSS="bower_components/bootstrap/dist/css/bootstrap.min.css  
-bower_components/angular-flash-alert/dist/angular-flash.min.css"
+export FILES_CSS="bower_components/bootstrap/dist/css/bootstrap.min.css"
 
 
 TARGET=app/assets/dependencies

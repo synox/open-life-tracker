@@ -7,6 +7,6 @@
  *
  * @type {angular.Module}
  */
-var openLifeTracker = angular.module('openLifeTracker', ['flash','n3-line-chart', 'ab-base64']);
+var openLifeTracker = angular.module('openLifeTracker', ['n3-line-chart']);
 
 

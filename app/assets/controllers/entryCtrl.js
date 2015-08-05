@@ -2,7 +2,7 @@
 'use strict';
 
 
-openLifeTracker.controller('entryCtrl', function ($scope, $rootScope, $http, $filter, Flash, base64, focus, offlineStorage) {
+openLifeTracker.controller('entryCtrl', function ($scope, $rootScope, $http, $filter, focus, offlineStorage) {
 	var entries = $scope.entries = offlineStorage.get();
 	var draft  = $scope.draft = {text: '', hashtags:[]};
 	
@@ -121,13 +121,13 @@ openLifeTracker.controller('entryCtrl', function ($scope, $rootScope, $http, $fi
     return JSON.stringify(entries);
   }
   $scope.exportBase64Mail = function() {
-    var base64String = base64.encode($scope.exportJson());
+    var base64String = window.btoa($scope.exportJson());
     window.location = 'mailto:?subject=open life tracker - backup&body=base64-encoded data\n: ' + base64String;
   }
   $scope.importBase64 = function() {
     var base64String = prompt("Please paste data:", "");
 		if(base64String) {
-	    var jsonString = base64.decode(base64String);
+	    var jsonString = window.atob(base64String);
 			$scope.importJson(jsonString);
 		}
   }
