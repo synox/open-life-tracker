@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="openLifeTracker" manifest="offline.appcache">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/MailLinks/MailLinks.html#//apple_ref/doc/uid/TP40007899-CH4-SW1 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Open Life Tracker</title>
+    
+    <script src="assets/dependencies.js"></script>
+    <link rel="stylesheet" href="assets/dependencies.css">
+
+    <link href="assets/app.css" rel="stylesheet">
+    <script src="assets/app.js"></script>
+    <script src="assets/controllers/entryCtrl.js"></script>
+    <script src="assets/controllers/chartCtrl.js"></script>
+    <script src="assets/directives/focusOn.js"></script>
+    <script src="assets/services/offlineStorage.js"></script>
+    <script src="assets/services/focus.js"></script>
+  </head>
+<body>
+   
+<div class="container" ng-controller="entryCtrl">
+    <noscript>
+       <h3> For functionality of this site it is necessary to enable JavaScript.
+       Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+       instructions how to enable JavaScript in your web browser</a>. </h3><hr/>
+    </noscript>
+
+    <section>
+      <div class="form-group">
+          <form ng-submit="saveEntry()">
+          <label>What are you doing?</label>
+          <textarea ng-model="draft.text" focus-on="draft-text" class="form-control" autofocus  rows="3"></textarea>
+          <div class="tags">
+            Tags:
+            <span ng-repeat="tag in draft.hashtags" class="tagKeyValuePair">
+              <button class="btn btn-default"  type="button" ng-click="tag.active=!tag.active; focusDraftTag(tag.key)" ng-class="{active: tag.active, 'btn-primary': tag.active}">#{{tag.key}}</button>
+              <input  ng-show="tag.active" ng-model="tag.value" focus-on="tag-{{tag.key}}">
+            </span>
+            
+            
+            <span class="pull-right">
+              #<input ng-model="newTagKey" type="text" placeholder="add tag"> 
+              <button class="btn btn-primary" type="button" ng-click="addDraftTag(newTagKey); newTagKey='';" ng-disabled="!newTagKey">add tag</button>
+            </span>
+            
+            
+          </div>
+          
+          <button   class="btn btn-success" type="submit" >
+            <span ng-show="editedEntry">Save changes</span>
+            <span ng-hide="editedEntry">Save</span>
+          </button>         
+          <button ng-show="editedEntry"  ng-click="newDraft()"   class="btn btn-default pull-right" type="button">new draft</button> 
+          </form>
+      </div> 
+      
+      <div flash-message="5000" ></div> 
+    </section>
+    
+    <section>
+      <p>{{entries.length}} messages have been saved.</p>
+
+      <table class="entryTable" ng-show="entries.length">
+        <tr ng-repeat="entry in entries | orderBy:'-timestamp' track by $index " class="entry"> 
+          <td>{{entry.timestamp| date:'dd.MM.yyyy HH:mm:ss'}}</td>
+          <td>{{entry.text}}</td>
+          <td>
+          <span ng-repeat="tag in entry.hashtags track by $index" class="tag">#{{tag.key}}<span ng-show="tag.value">:{{tag.value}}</span> </span>
+          </td>
+          <td>
+          <button ng-show="unlockEditButtons" ng-click="editEntry(entry)" class="btn btn-primary entry-action" >edit</button>
+          <button ng-show="unlockEditButtons" ng-click="removeEntry(entry)" class="btn btn-danger entry-action">delete</button>
+        </td>
+      </tr>
+    </table>
+  </section>
+  
+  <section ng-controller="chartCtrl">
+    <div  width="350" height="400">
+        <linechart data="graphData" options="graphOptions" mode="" ></linechart>      
+    </div>
+  </section>
+  
+  
+    
+  
+  <footer>
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Import/Export...
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <button  ng-click="importBase64()"   class="btn btn-primary" type="button" >Import Base64 data</button> 
+        <button  ng-click="importJson()"   class="btn btn-primary" type="button" >Import JSON data</button> 
+        
+        <hr>
+        
+        <button  ng-click="unlockExport=true; exportDataJson = exportJson();" ng-hide="unlockExport" class="btn btn-success" type="button" >Export...</button> 
+        <span ng-show="unlockExport">json: <input ng-model="exportDataJson"></input>  </span><br/>
+        <button ng-show="unlockExport" ng-click="exportBase64Mail()" class="btn btn-primary entry-action">Export as Base64 to Email</button>  
+
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Advanced...
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        <button  ng-click="unlockEditButtons=true"   class="btn btn-warning" type="button" >Enable Edit/Delete Buttons</button> 
+        <hr>
+        <button  ng-click="unlockClear=true"   class="btn btn-danger" type="button" >Clear all Data...</button> 
+        <button  ng-click="unlockClear=false;resetAllData()" ng-show="unlockClear"   class="btn btn-primary" type="button" >Really delete all data!</button> 
+      </div>
+    </div>
+  </div>
+  
+  </div>
+</footer>
+
+
+</div>
+</body>
+</html>

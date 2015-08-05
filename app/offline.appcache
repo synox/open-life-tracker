@@ -1,0 +1,23 @@
+CACHE MANIFEST
+
+CACHE:
+assets/app.css
+assets/app.js
+assets/controllers/chartCtrl.js
+assets/controllers/entryCtrl.js
+assets/dependencies.css
+assets/dependencies.js
+assets/directives/focusOn.js
+assets/services/focus.js
+assets/services/offlineStorage.js
+fonts/glyphicons-halflings-regular.eot
+fonts/glyphicons-halflings-regular.svg
+fonts/glyphicons-halflings-regular.ttf
+fonts/glyphicons-halflings-regular.woff
+fonts/glyphicons-halflings-regular.woff2
+index.html
+
+
+NETWORK:
+*
+# abfe583182ea10f696f86d7ca25f28cb

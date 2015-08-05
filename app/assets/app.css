@@ -1,0 +1,17 @@
+.tags input {
+  width: 5em;
+}
+
+span.tag {
+  border: 1px solid gray;
+  margin: 8px;
+}
+
+span.tagKeyValuePair {
+  padding: 5pt;
+}
+
+
+table.entryTable td {
+  padding: 4px;
+}
