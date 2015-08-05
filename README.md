@@ -16,6 +16,8 @@ Track any personal or professional data in the browser. Track your health, the f
 2. Make sure the file offline.appcache is served with mime-type `text/cache-manifest`. There is a `.htaccess` file for apache.
 3. Access with your desktop or mobile browser. 
 
+## Status
+This software is still under development. Be safe and make export your entries every few weeks or month. 
 
 ## Build and test
 If you make changes, that's how you build it. `npm` installation required.
@@ -34,7 +36,7 @@ If you make changes, that's how you build it. `npm` installation required.
 To do: 
 - more unit tests
 - test with large number of entries
-
+  
 ## Used JS libraries
 Base:
  * http://angularjs.org/
